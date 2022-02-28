@@ -11,6 +11,17 @@ function readFile(filePath) {
   });
 }
 
+async function appendFile(filePath, data) {
+  return new Promise((fulfill, reject) => {
+    fs.appendFile(filePath, data, (err) => {
+      if (err) {
+        reject(err.message);
+      }
+      fulfill('Successfully written into the file!');
+    });
+  });
+}
+
 module.exports = {
-  readFile,
+  readFile, appendFile,
 };
