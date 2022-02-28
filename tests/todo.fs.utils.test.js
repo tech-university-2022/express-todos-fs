@@ -1,6 +1,6 @@
 const fs = require('fs');
 const {
-  promisifyReadFile, promisifyAppendFile, removeFromFile, filterData,
+  promisifyReadFile, promisifyAppendFile, removeFromFile,
 } = require('../src/utils/todo.fs.utils');
 
 describe('PromisifyReadFile function', () => {
@@ -42,12 +42,12 @@ describe('PromisifyAppendFile function', () => {
   });
   it('should return invalid message if file is not found', async () => {
     jest.spyOn(fs, 'appendFile').mockImplementation((filePath, content, errorCallback) => {
-      errorCallback('Cannot write into file!');
+      errorCallback('Cannot append to the file!');
     });
     try {
       await promisifyAppendFile('seed', 'exampledata');
     } catch (err) {
-      expect(err.message).toBe('Cannot write into file !');
+      expect(err.message).toBe('Cannot append to file!');
     }
   });
   it('should return invalid message if file path is not string', async () => {
@@ -91,51 +91,21 @@ describe('RemoveFromFile function', () => {
     try {
       await removeFromFile(5);
     } catch (err) {
-      expect(err.message).toBe('Invalid, enter a proper filepath!');
+      expect(err.message).toBe('Filepath not a string');
     }
   });
   it('should return invalid message if filter character not given', async () => {
     try {
       await removeFromFile('somedirectory');
     } catch (err) {
-      expect(err.message).toBe('Invalid, enter a proper filter Character!');
+      expect(err.message).toBe('Filter character not a string');
     }
   });
   it('should return invalid message if filter character is not string', async () => {
     try {
       await removeFromFile('somedirectory', 5);
     } catch (err) {
-      expect(err.message).toBe('Invalid, enter a proper filter Character!');
+      expect(err.message).toBe('Filter character not a string');
     }
-  });
-});
-describe('FilterData function', () => {
-  it('should return invalid message if filter character is not string', () => {
-    try {
-      filterData([], 5);
-    } catch (err) {
-      expect(err.message).toBe('Invalid, enter a proper filter Character!');
-    }
-  });
-  it('should return invalid message if input array is not an array', () => {
-    try {
-      filterData(2, 'c');
-    } catch (err) {
-      expect(err.message).toBe('Invalid, enter proper array!');
-    }
-  });
-  it('should return invalid message if the array does not contain only strings', () => {
-    try {
-      filterData([2, 'hi']);
-    } catch (err) {
-      expect(err.message).toBe('Invalid, enter proper array!');
-    }
-  });
-  const testArray = ['banana', 'broccoli', 'beans', 'coleslaw'];
-  it('should return only content starting with filtercharacter if include flag is true', () => {
-    expect(filterData(testArray, 'b', true)).toEqual(testArray.slice(0, 3));
-  });
-  it('should return only content not starting with filtercharacter if include flag is false', () => {
-    expect(filterData(testArray, 'b', false)).toEqual([testArray[3]]);
   });
 });

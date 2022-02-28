@@ -3,9 +3,11 @@ const {
 } = require('../services/todo.services');
 
 const getTodoHandler = async (req, res) => {
-  res.set('Content-Type', 'text/html');
   const todoContent = await readTodo('./resources/todos.txt');
-  res.status(200).send(todoContent);
+  res.set('Content-Type', 'text/html');
+  res.send(todoContent);
+  res.status(200);
+  // res.status(200).send(todoContent);
 };
 const postTodoHandler = async (req, res) => {
   console.log(req.body);
@@ -14,7 +16,9 @@ const postTodoHandler = async (req, res) => {
   const newEntry = `\r\n${todoIndex}|${req.body.todo}`;
   const appendedToDo = await appendToDo('./resources/todos.txt', newEntry);
   res.set('Content-Type', 'text/html');
-  res.status(200).send(appendedToDo);
+  res.send(appendedToDo);
+  res.status(200);
+  // res.status(200).send(appendedToDo);
 };
 const putTodoHandler = async (req, res) => {
   const todoIndex = req.params.index;

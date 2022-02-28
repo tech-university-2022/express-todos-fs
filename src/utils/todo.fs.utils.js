@@ -18,7 +18,7 @@ const promisifyAppendFile = (filepath, data) => new Promise((resolve, reject) =>
   if (!data) throw Error('Invalid, Enter data to write!');
   else if (typeof data !== 'string') throw Error('Invalid, enter string buffer data!');
   fs.appendFile(filepath, data, (err) => {
-    if (err) reject(new Error(`Cannot append to file '${filepath}'!`));
+    if (err) reject(new Error('Cannot append to file!'));
     resolve(promisifyReadFile(filepath));
   });
 });
