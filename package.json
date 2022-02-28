@@ -1,0 +1,27 @@
+{
+  "name": "express-todos-fs",
+  "version": "1.0.0",
+  "description": "Create following endpoints -  Get - Get me all the todos Post - Create another todo in the file Put/Patch - Change a todo based on todo id Delete - Delete a todo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tech-university-2022/express-todos-fs.git"
+  },
+  "author": "Sara Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tech-university-2022/express-todos-fs/issues"
+  },
+  "homepage": "https://github.com/tech-university-2022/express-todos-fs#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
