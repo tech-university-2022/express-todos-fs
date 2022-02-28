@@ -4,7 +4,8 @@
   "description": "Create following endpoints -  Get - Get me all the todos Post - Create another todo in the file Put/Patch - Change a todo based on todo id Delete - Delete a todo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,11 +18,18 @@
   },
   "homepage": "https://github.com/tech-university-2022/express-todos-fs#readme",
   "dependencies": {
+    "axios": "^0.26.0",
     "body-parser": "^1.19.2",
+    "dns": "^0.2.2",
     "express": "^4.17.3",
     "fs": "^0.0.1-security"
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "dotenv": "^16.0.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15"
   }
 }
