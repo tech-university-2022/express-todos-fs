@@ -1,5 +1,4 @@
 const todoService = require('../services/todos.service');
-// const utils = require('../utils/todos.utils');
 
 const getTodosHandler = async (req, res) => {
     res.set('Content-Type', 'text/html');
@@ -10,7 +9,7 @@ const getTodosHandler = async (req, res) => {
     } catch(err) {
         res.status(500).send(err.message);
     }    
-}
+};
 const addTodoHandler = async(req, res) => {
     const todoData = req.body.todo;
     try{
@@ -19,7 +18,7 @@ const addTodoHandler = async(req, res) => {
     } catch(err) {
         res.status(err.httpCode).send(err.message);
     }
-}
+};
 const changeTodoHandler = async(req, res) => {
     const todoId = parseInt(req.body.id);
     const newTodo = req.body.todo;
@@ -29,9 +28,19 @@ const changeTodoHandler = async(req, res) => {
     } catch(err) {
         res.status(err.httpCode).send(err.message);
     }
-}
+};
+const removeTodoHandler = async(req, res) => {
+    const todoId = parseInt(req.body.id);
+    try{
+        await todoService.removeTodo(todoId);
+        getTodosHandler(req,res);
+    } catch(err) {
+        res.status(err.httpCode).send(err.message);
+    }
+};
 module.exports = {
     getTodosHandler,
     addTodoHandler,
     changeTodoHandler,
+    removeTodoHandler,
 };

@@ -1,5 +1,7 @@
-1|TDD sucks
+1|Take a break
 2|Make tea
-3|Buy 1kg rice
+3|Park the car
 4|Follow tdd daily
-5|Buy veggies
+5|Buy vegetables
+6|Bathe the cat
+7|Buy fruits

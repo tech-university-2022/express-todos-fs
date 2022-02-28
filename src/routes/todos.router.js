@@ -1,10 +1,12 @@
 const express = require('express');
 const todoHandlers = require('../handlers/todos.handler');
 
-const getAndAddTodosRouter = express.Router();
-getAndAddTodosRouter.get('/', todoHandlers.getTodosHandler);
-getAndAddTodosRouter.post('/', todoHandlers.addTodoHandler);
-getAndAddTodosRouter.put('/',todoHandlers.changeTodoHandler);
+const todoRouter = express.Router();
+todoRouter.get('/', todoHandlers.getTodosHandler);
+todoRouter.post('/', todoHandlers.addTodoHandler);
+todoRouter.put('/',todoHandlers.changeTodoHandler);
+todoRouter.delete('/',todoHandlers.removeTodoHandler);
+
 module.exports = {
-    getAndAddTodosRouter,
+    todoRouter,
 }
