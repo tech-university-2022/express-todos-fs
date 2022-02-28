@@ -1,6 +1,6 @@
 const express = require('express');
 const env = require('dotenv');
-const { getToDoRouter } = require('./routes/getToDoRouter.route');
+const { getToDoRouter } = require('./routes/getToDo.route');
 
 env.config();
 const port = process.env.PORT || 3000;
