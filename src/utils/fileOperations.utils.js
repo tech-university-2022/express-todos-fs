@@ -22,6 +22,17 @@ async function appendFile(filePath, data) {
   });
 }
 
+async function writeFile(filePath, data) {
+  return new Promise((fulfill, reject) => {
+    fs.writeFile(filePath, data, (err) => {
+      if (err) {
+        reject(err.message);
+      }
+      fulfill('Successfully written into the file!');
+    });
+  });
+}
+
 module.exports = {
-  readFile, appendFile,
+  readFile, appendFile, writeFile,
 };

@@ -4,4 +4,4 @@
 4|Follow tdd daily
 5|Buy vegetables
 6|Get groceries
-7|get milk
+7|Get milk
