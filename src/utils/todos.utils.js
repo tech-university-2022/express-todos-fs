@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+
 const promisifyReadDir = (directoryPath) => new Promise((resolve, reject) => {
   if (typeof directoryPath !== 'string') throw new Error('Invalid, enter a proper Directory Path!');
   fs.readdir(directoryPath, (err, data) => {
@@ -23,7 +24,10 @@ const promisifyAppendFile = (filePath, data) => new Promise((resolve, reject) =>
       return resolve(promisifyReadFile(filePath));
     });
 });
-
+// ( async() => {
+// const data = await promisifyReadFile('./resources/todos.txt');
+//     console.log(data.length);
+// })();
 module.exports ={
     promisifyReadDir,
     promisifyReadFile,
