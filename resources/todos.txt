@@ -1,9 +1,5 @@
-1|Take a break
+1|TDD sucks
 2|Make tea
 3|Buy 1kg rice
 4|Follow tdd daily
-5|Buy vegetables
-6|Buy cola
-7|Get parcel
-8|0
-9|''''''0''''''
+5|Buy veggies

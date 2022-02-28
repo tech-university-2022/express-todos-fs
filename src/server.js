@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 const app = express();
 
-app.use(bodyParser.text());
+app.use(bodyParser.json());
 app.use('/health', healthRouter);
 app.use('/todos', todoRouters.getAndAddTodosRouter);
 

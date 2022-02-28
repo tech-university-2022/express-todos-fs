@@ -12,10 +12,20 @@ const getTodosHandler = async (req, res) => {
     }    
 }
 const addTodoHandler = async(req, res) => {
-    const todoData = req.body;
+    const todoData = req.body.todo;
     try{
         await todoService.addTodo(todoData);
-        getTodosHandler(null,res);
+        getTodosHandler(req,res);
+    } catch(err) {
+        res.status(err.httpCode).send(err.message);
+    }
+}
+const changeTodoHandler = async(req, res) => {
+    const todoId = parseInt(req.body.id);
+    const newTodo = req.body.todo;
+    try{
+        await todoService.changeTodo(todoId,newTodo);
+        getTodosHandler(req,res);
     } catch(err) {
         res.status(err.httpCode).send(err.message);
     }
@@ -23,4 +33,5 @@ const addTodoHandler = async(req, res) => {
 module.exports = {
     getTodosHandler,
     addTodoHandler,
+    changeTodoHandler,
 };

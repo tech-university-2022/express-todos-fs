@@ -58,3 +58,24 @@ describe('AddToDoHandler function', () => {
         }
     });
 });
+describe('ChangeToDoHandler function', () => {
+    it('should return modified list of todos after changing', async () => {
+        jest.spyOn(todoService,'changeTodo').mockResolvedValue(testTodos);
+        jest.spyOn(todoService,'getTodos').mockImplementation(() => {});
+        const res = mockResponse();
+        const req = {body: {'todo':'new todo', 'id':2}};
+        await handlers.changeTodoHandler(req,res);
+        expect(todoService.getTodos).toHaveBeenCalled();
+    });
+    it('should return error with status code if some input or server error', async () => {
+        jest.spyOn(todoService,'changeTodo').mockRejectedValue(new InputError('InputError','Invalid input!',400));
+        const res = mockResponse();
+        const req = {body: {'todo':'new todo', 'id':2}};
+        try{
+            await handlers.changeTodoHandler(req,res);
+        } catch(err) {
+            if(err instanceof InputError) expect(res.status).toHaveBeenCalledWith(400);
+            expect(res.send).toHaveBeenCalledWith(err.mesage);
+        }
+    });
+});

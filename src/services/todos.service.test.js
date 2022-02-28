@@ -58,3 +58,45 @@ describe('AddToDos Service function', () => {
         }
     });
 });
+describe('ChangeToDos Service function', () => {
+    it('should return the modified todo list after changing content', async () => {
+        jest.spyOn(utils,'editFile').mockResolvedValue(['1|todo1','2|todo4','3|todo3']);
+        expect(await services.changeTodo(2,'todo4')).toEqual(['1|todo1','2|todo4','3|todo3']);
+    });
+    it('should return error if input ID is invalid', async () => {
+        try{
+            await services.changeTodo(-1,'new todo');
+        } catch(err) {
+            expect(err.message).toBe('Invalid, enter proper todo ID!');
+        }
+    });
+    it('should return error if input ID is not number', async () => {
+        try{
+            await services.changeTodo('example','new todo');
+        } catch(err) {
+            expect(err.message).toBe('Invalid, enter proper todo ID!');
+        }
+    });
+    it('should return error if data is not given', async () => {
+        try{
+            await services.changeTodo(1);
+        } catch(err) {
+            expect(err.message).toBe('Invalid, enter replacement data!');
+        }
+    });
+    it('should return error if Todo Id is not given', async () => {
+        try{
+            await services.changeTodo();
+        } catch(err) {
+            expect(err.message).toBe('Invalid, enter proper todo ID!');
+        }
+    });
+    it('should return error if util function malfunctions', async () => {
+        jest.spyOn(utils,'editFile').mockRejectedValue(new Error('Some error'));
+        try{
+            await services.changeTodo(1,'new todo');
+        } catch(err) {
+            expect(err.message).toBe('Some error');
+        }
+    });
+});
