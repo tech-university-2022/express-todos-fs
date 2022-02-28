@@ -21,13 +21,13 @@
     "axios": "^0.26.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "jest": "^27.5.1",
     "nodeman": "^1.1.2",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
     "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1"
   }
 }
