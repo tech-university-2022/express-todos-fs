@@ -6,7 +6,7 @@ const getTodosHandler = async (req, res) => {
     try{
         const todos = await todoService.getTodos();
         if(!todos) res.status(200).send('No todos found! :(');
-        else res.status(200).send(`<h1>Todos:</h1><br>` + todos);
+        else res.status(200).send(`<h2>Your To-Do List:</h2><br>` + todos);
     } catch(err) {
         res.status(500).send(err.message);
     }    
@@ -14,11 +14,10 @@ const getTodosHandler = async (req, res) => {
 const addTodoHandler = async(req, res) => {
     const todoData = req.body;
     try{
-        const addTodo = await todoService.addTodo(todoData);
-        res.status(200).send('New todo Added!');
-        await getTodosHandler(req,res);
+        await todoService.addTodo(todoData);
+        getTodosHandler(null,res);
     } catch(err) {
-        res.status(500).send(err.message);
+        res.status(err.httpCode).send(err.message);
     }
 }
 module.exports = {

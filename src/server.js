@@ -9,9 +9,9 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use('/health', healthRouter);
-app.use('/todos', todoRouters.getAndAddtodosRouter);
+app.use('/todos', todoRouters.getAndAddTodosRouter);
 
 app.listen(port, () => {
   console.log(`Server listening at: http://${host}:${port}`);

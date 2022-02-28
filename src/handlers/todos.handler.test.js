@@ -1,3 +1,6 @@
+const e = require('express');
+const res = require('express/lib/response');
+const { InputError } = require('../errors/todos.errors');
 const todoService =  require('../services/todos.service');
 const handlers = require('./todos.handler');
 const testTodos = `1|todo1<br>2|todo2<br>3|todo3<br>`;
@@ -15,7 +18,7 @@ describe('GetTodosHandler function', () => {
         const res = mockResponse();
         await handlers.getTodosHandler(null,res);
         expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.send).toHaveBeenCalledWith(`<h1>Todos:</h1><br>` + testTodos);
+        expect(res.send).toHaveBeenCalledWith(`<h2>Your To-Do List:</h2><br>` + testTodos);
     });
     it('should return message if no todos found', async () => {
         jest.spyOn(todoService,'getTodos').mockResolvedValue(null);
@@ -35,5 +38,23 @@ describe('GetTodosHandler function', () => {
     });
 });
 describe('AddToDoHandler function', () => {
-    it('should return total list of todos')
-})
+    it('should return total list of todos after inserting', async () => {
+        jest.spyOn(todoService,'addTodo').mockResolvedValue(testTodos);
+        jest.spyOn(todoService,'getTodos').mockImplementation(() => {});
+        const res = mockResponse();
+        const req = {body: 'new todo'};
+        await handlers.addTodoHandler(req,res);
+        expect(todoService.getTodos).toHaveBeenCalled();
+    });
+    it('should return error with status code if some input or server error', async () => {
+        jest.spyOn(todoService,'addTodo').mockRejectedValue(new InputError('InputError','Invalid input!',400));
+        const res = mockResponse();
+        const req = {body: 'new todo'};
+        try{
+            await handlers.addTodoHandler(req,res);
+        } catch(err) {
+            if(err instanceof InputError) expect(res.status).toHaveBeenCalledWith(400);
+            expect(res.send).toHaveBeenCalledWith(err.mesage);
+        }
+    });
+});
