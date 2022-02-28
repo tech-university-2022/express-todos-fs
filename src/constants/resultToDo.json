@@ -4,6 +4,5 @@
     { "id": "3", "todo": "Buy 1kg rice" },
     { "id": "4", "todo": "Follow tdd daily" },
     { "id": "5", "todo": "Buy vegetables" },
-    { "id": "6", "todo": "Get groceries" },
-    {"id": "7", "todo": "Get milk"}
+    { "id": "6", "todo": "Get groceries" }
 ]
