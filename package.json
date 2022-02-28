@@ -19,9 +19,9 @@
   "homepage": "https://github.com/aishwarya18sr/-express-todos-fs#readme",
   "dependencies": {
     "axios": "^0.26.0",
+    "body-parser": "^1.19.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "nodeman": "^1.1.2",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
