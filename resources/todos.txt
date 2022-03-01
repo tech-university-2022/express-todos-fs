@@ -1,5 +1,1 @@
-1|"Take a break"
-2|"Make tea"
-3|"Park the car"
-4|"Follow tdd daily"
-5|"Buy vegetables"
+7|Buy Fruits8|Buy Fruits

@@ -12,11 +12,11 @@ const getTodoHandler = async (req, res) => {
 }
 
 const postTodoHandler = async (req, res) => {
-    const newTodo = req.body;
+    const newTodo = req.body.todoTask;
+    console.log(req.body.todoTask);
     try {
         await postTodoService(newTodo);
-        getTodoHandler();
-        //res.redirect('/todos');
+        getTodoHandler(null , res);
     } catch (err) {
         res.status(500).send(err.message);
     }

@@ -13,19 +13,19 @@ const promisfyReadFile = (filePath) => {
     })
 }
 
-const promisfyWriteFile = (filepath, newTodo) => {
+const promisfyAppendFile = (filepath, data) => {
     return new Promise((resolve, reject) => {
-        fs.writeFile(filepath, newTodo, (error, data) => {
-            if (error) {
-                reject(error);
+        fs.appendFile(filepath, data, (err) => {
+            if (err) {
+                reject(err);
             } else {
-                resolve(data.toString().split('\n'));
+                resolve()
             }
-        })
+        });
     })
 }
 
 module.exports = {
     promisfyReadFile,
-    promisfyWriteFile
+    promisfyAppendFile
 }
