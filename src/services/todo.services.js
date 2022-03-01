@@ -11,11 +11,9 @@ const promisifyReadFile = (filePath) => new Promise((resolve, reject) => {
   });
 });
 
-const appendFile = async (file, s) => new Promise((fulfill, reject) => {
-  const data = fs.readFileSync('./resources/todo.txt').toString();
-  // const data = await promisifyReadFile('./resources/todo.txt');
-  const sss = data.split('\n').length;
-  const ss = `${sss}|${s.task}\n`;
+const appendFile = async (file, s, data) => new Promise((fulfill, reject) => {
+  const sss = data.length;
+  const ss = `\n${sss}|${s.task}`;
   fs.appendFile(file, ss, (err) => {
     if (!err) {
       fulfill('todo added');
@@ -24,21 +22,30 @@ const appendFile = async (file, s) => new Promise((fulfill, reject) => {
     }
   });
 });
+const appendToDo = async (file, s) => {
+  const data = await promisifyReadFile(file);
+  appendFile(file, s, data);
+};
 
-function updateFile(file, s, index) {
+function updateFile(file, s, index, arr) {
   return new Promise((fulfill, reject) => {
-    const data = fs.readFileSync('./resources/todo.txt').toString();
-    const arr = data.split('\n');
-    arr[index - 1] = `${index}|${s.task}`;
+    // const data = fs.readFileSync('./resources/todo.txt').toString();
+    // const arr = data.split('\n');
+
     const ss = arr.join('\n');
     fs.writeFileSync('./resources/todo.txt', ss);
     fulfill('file updated');
   });
 }
+const updateToDo = async (file, s, index) => {
+  const data = await promisifyReadFile(file);
+  data[index - 1] = `${index}|${s.task}`;
+  await updateFile(file, s, index, data);
+};
 
-const deleteFile = (index) => new Promise((fulfill, reject) => {
-  const data = fs.readFileSync('./resources/todo.txt').toString();
-  const arr = data.split('\n');
+const deleteFile = (index, arr) => new Promise((fulfill, reject) => {
+  // const data = fs.readFileSync('./resources/todo.txt').toString();
+  // const arr = data.split('\n');
   const newArr = [];
   for (let fileLine = 0; fileLine < arr.length; fileLine += 1) {
     const dataa = arr[fileLine].split('|');
@@ -56,10 +63,13 @@ const deleteFile = (index) => new Promise((fulfill, reject) => {
   fs.writeFileSync('./resources/todo.txt', ss);
   fulfill('todo deleted');
 });
-
+const deleteTodo = async (index) => {
+  const data = await promisifyReadFile('resources/todo.txt');
+  deleteFile(index, data);
+};
 module.exports = {
   promisifyReadFile,
-  appendFile,
-  updateFile,
-  deleteFile,
+  appendToDo,
+  updateToDo,
+  deleteTodo,
 };
