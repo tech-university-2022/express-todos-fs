@@ -1,5 +1,6 @@
-1|Take a break
-2|Make tea
+1|Buy
 3|Buy 1kg rice
 4|Follow tdd daily
 5|Buy vegetables
+6|Playing
+7|Reading
