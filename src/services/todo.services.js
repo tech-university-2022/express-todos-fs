@@ -29,8 +29,6 @@ const appendToDo = async (file, s) => {
 
 function updateFile(file, s, index, arr) {
   return new Promise((fulfill, reject) => {
-    // const data = fs.readFileSync('./resources/todo.txt').toString();
-    // const arr = data.split('\n');
 
     const ss = arr.join('\n');
     fs.writeFileSync('./resources/todo.txt', ss);
@@ -44,8 +42,6 @@ const updateToDo = async (file, s, index) => {
 };
 
 const deleteFile = (index, arr) => new Promise((fulfill, reject) => {
-  // const data = fs.readFileSync('./resources/todo.txt').toString();
-  // const arr = data.split('\n');
   const newArr = [];
   for (let fileLine = 0; fileLine < arr.length; fileLine += 1) {
     const dataa = arr[fileLine].split('|');
