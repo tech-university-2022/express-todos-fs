@@ -1,1 +1,6 @@
-1|Do something2|Buy time 3|Buy Fruits4|undefined1|Buy time time time
+1|Do something
+2|Buy time 
+3|Buy Fruits
+4|relax
+5|relax more
+6|undefined
