@@ -1,0 +1,35 @@
+{
+  "name": "express-todos-fs",
+  "version": "1.0.0",
+  "description": "Create following endpoints -  Get - Get me all the todos Post - Create another todo in the file Put/Patch - Change a todo based on todo id Delete - Delete a todo",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tech-university-2022/express-todos-fs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tech-university-2022/express-todos-fs/issues"
+  },
+  "homepage": "https://github.com/tech-university-2022/express-todos-fs#readme",
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "sequelize-cli": "^6.4.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.17.0"
+  }
+}
